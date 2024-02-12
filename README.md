@@ -75,18 +75,19 @@ Script also takes optional arguments which are:
 - `-h`, `--help`  
   Output help message for the script.
 
-### Usage examples
+### Usage example
 
-In the repository some files are provided for testing.
-To test these cases run:
+In the repository a dircetory `./files` is provided for demonstrating basic functionality of the tool.  
+To analyze the directory run:
 ```
 cd files
-sh ./test.sh  # will make the files ready
+sh ./init_files.sh  # will set unusual permissions to files and create symbolic links
 
 cd ../
-python main.py files -l
+python main.py files -t '1 mb' --report-big-files big-files.txt -l
 ```
-This example demonstrates symlink loops management, statistics for 3 categories (text, image and audio), management of empty files, determing category based on extension in case of no permissions and forming a report.
+This example demonstrates symlink loops management, statistics for 3 categories (text, image and audio), management of empty files, determing category based on extension in case of no permissions and forming a report.  
+It will create `big-files.txt` with a list of files with size bigger than 1 MB, `files_report.txt` with a list of files with unusual permissions (in this example file with 000 permission), output symlinks loop information and file errors to standart error and log directory statistic to standart output.
 
 
 ## Project structure
@@ -120,5 +121,4 @@ fs_analyzer/
   Contains utility functions used throughout the project.  
 
 ### Testing
-Testing is done with pytest framework with 97% of coverage/
-
+Testing is done with pytest framework with 97% of coverage. Test files can be found in the `test/` directory.
